@@ -1,4 +1,5 @@
 Feature: Search Page
+
     As a unauthenticated user
     I want to search for a channel/category
     So that I can get the information neededs

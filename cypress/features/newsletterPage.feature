@@ -1,8 +1,8 @@
 Feature: NewsletterPage
 
-As a user
-I want to subscribe to the newsletter
-So that I can receive email updates
+    As a user
+    I want to subscribe to the newsletter
+    So that I can receive email updates
 
 Background:
     Given a unauthenticated user on the newsletter page
