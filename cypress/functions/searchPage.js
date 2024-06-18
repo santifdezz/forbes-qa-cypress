@@ -19,7 +19,6 @@ export function searchArticle(term) {
     cy.url().then((url) => {
         expect(url).to.include(homeElements.SEARCH_URL);
     });
-    cy.wait(2000)
     getElement(homeElements.SEARCH_BAR).as('searchBar');
     getElement('@searchBar').should('be.visible').should('be.enabled').then(($searchBar) => {
         typeInput($searchBar, term);
