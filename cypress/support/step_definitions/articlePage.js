@@ -1,31 +1,33 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import {onClick, visitPage} from '../../functions/commonFunctions.js';
+import * as Browser from '../../functions/commonFunctions.js';
 import * as ArticlePage from '../../functions/articlePage.js';
 import * as HomePage from '../../functions/homePage.js';
 import * as SearchPage from '../../functions/searchPage.js';
+require('cypress-xpath')
 
 // Background
 Given('an unauthenticated user', () => {
-    visitPage();
-});
-Given('the user is on the menu', () => {
-    HomePage.visitMenu()
+    Browser.visitPage();
 });
 
-When('the user clicks on a {string}', (category) => {
+Given('the user is with the menu open on the homepage', () => {
+    HomePage.visitMenu()
+});
+Given('the user clicks on a {string} on the menu', (category) => {
     HomePage.clickMenuCategory(category);
 });
 
-Then('the user is redirected to the correct {string}', (url) => {
-    ArticlePage.checkUrl(url)
+When('the user is redirected to the correct {string}', (url) => {
+    ArticlePage.checkUrl(url);
+});
+Then('the article index should match the title: {string}', (title) => {
+    ArticlePage.checkIndex(title)
 });
 
-
-
-Given('the user is on the menu on the Billionaires Category', () => {
+Given('the user is on the menu on the billionaires category', () => {
     HomePage.visitBillionaireMenu();
 });
-Given('the user clicks on {string}', (article) => {
+Given('the user clicks the article: {string} on the menu', (article) => {
     HomePage.clickArticle(article);
 });
 
@@ -36,9 +38,6 @@ When('the user orders by {string} the richest table', (order) => {
 Then('the table should be reordered by {string}', (order) => {
     ArticlePage.checkOrder(order);
 });
-
-
-
 
 Given('the user is on the search page', () => {
     HomePage.visitSearchPage();

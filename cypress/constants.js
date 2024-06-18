@@ -21,19 +21,17 @@ export const articleElements = {
     ARTICLE_TITLE_SEARCHED: 'h1.fs-headline.speakable-headline',
     RICHEST_YOUNGEST: ' li.tab.select.youngest',
     RICHEST_OLDEST: ' li.tab.select.oldest',
-    RICHEST_TABLE: '#list-table-body > tr',
-    TABLE_CELL : '#list-table-body > :nth-child({row}) > :nth-child(5)'
-
+    RICHEST_TABLE: '//*[@id="list-table-body"]',
+    TABLE_CELL : '//td[5]',
+    ARTICLE_INDEX : 'a.isDg-4PG.LoxeK:contains(name)',
+    
 }
 export const newsletterElements = {
     NEWSLETTER_URL: '/newsletters',
     NEWSLETTER_WEEKLY: 'button[value="ForbesWeekly"]',
-    EMAIL_INPUT: 'input[aria-label="Email"]',
+    EMAIL_INPUT: 'input.email',
     SEND_BUTTON: 'button.subscribe-button',
     SUCCESFULL_SUBSCRIPTION: 'h4:contains("You’re Subscribed!")',
     CLOSE_BOX: 'button.action__close',
 
-}
-export const constantElements = {
-    EMAIL : "juanitoox4@gmail.com",
 }

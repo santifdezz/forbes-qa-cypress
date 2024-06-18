@@ -1,20 +1,14 @@
-import {homeElements} from "../support/constants.js";
+import {homeElements} from "../constants.js";
 
 // commonFunctions.js
 export function visitPage() {
     cy.clearAllCookies();
     cy.visit(homeElements.HOME_URL, { failOnStatusCode: false });
-    cy.wait(2000);
-    onClick(homeElements.ACCEPT_COOKIES);
+    getElement(homeElements.ACCEPT_COOKIES).as('acceptButton');
+    cy.get('@acceptButton').should('be.visible').click();
 }
-
-export function onClick(selector, force = false){
-    getElement(selector).first().click({ force });
-}
-
-export function typeInput(selector, text) {
-    getElement(selector).should('be.visible').should('be.enabled').type(text);
-}
+export const onClick = (selector, force = false) => getElement(selector).first().click({ force });
+export const typeInput = (selector, text) => getElement(selector).should('be.visible').should('be.enabled').type(text);
 export function checkRedirection(link){
     cy.url().then((url) => {
         assert.strictEqual(url, link);

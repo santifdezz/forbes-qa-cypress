@@ -1,10 +1,9 @@
 # FORBES Website README #
 
 ## Index
- - [Pre-Requisites](#Pre-Requisites)
  - [Repository Description](#Repository_Description)
- - [Cypress Configuration](#Cypress_Configuration)
- - [Connecting tools](#Connecting_tools)
+ - [Pre-Requisites](#Pre-Requisites)
+ - [Project_Structure](#Project_Structure)
  - [Program_Execution](#Program_Execution)
 
 ## Repository Description
@@ -16,6 +15,18 @@ This repository contains automated tests for the Forbes Official Website, automa
  - https://nodejs.org/en - NPM v.10.8.1
  - https://www.npmjs.com/package/npx NPX v.10.8.1
  - VSCODE Cucumber Extension
+
+## Project_Structure
+We are using as POM 
+
+
+  -  features = "cypress/features" -> This directory contains '.feature' files that describe the web features in a human-readable format. These files use Gherkin syntax.
+
+  -  functions = "cypress/functions" -> This directory can contain helper functions that you can use in your step definitions or anywhere else in your tests.
+
+  -  fixtures = "cypress/fixtures" -> Fixtures are files used to manage and organize test data.
+
+  -  support = "cypress/support" ->  This directory is used to set up global behaviors that apply to all your tests, or to define custom Cypress commands. Also the step_definitions inside contains the files that define the steps used in your '.feature' files. Each step is a function that gets executed when the corresponding step in a '.feature'.
 
 ## Program_Execution 
 To install al the dependencies after installing pre-requisites:

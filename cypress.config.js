@@ -16,5 +16,7 @@ module.exports = defineConfig({
     specPattern: "cypress/features/*.feature",
     baseUrl: "https://forbes.com",
     chromeWebSecurity: false,
+    defaultCommandTimeout: 10000,
+    pageLoadTimeout: 100000,
   },
 });

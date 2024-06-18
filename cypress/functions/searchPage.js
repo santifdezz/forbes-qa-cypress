@@ -1,5 +1,4 @@
-import {homeElements, articleElements} from "../support/constants.js";
-//import * as loginScreen from "./articlePage.js";
+import {homeElements, articleElements} from "../constants.js";
 import { typeInput, onClick, getElement} from "./commonFunctions.js";
 
 let articleTitleText;
@@ -21,8 +20,8 @@ export function searchArticle(term) {
         expect(url).to.include(homeElements.SEARCH_URL);
     });
     cy.wait(2000)
-    getElement(homeElements.SEARCH_BAR).should('be.visible').should('be.enabled').as('searchBar');
-    getElement('@searchBar').then(($searchBar) => {
+    getElement(homeElements.SEARCH_BAR).as('searchBar');
+    getElement('@searchBar').should('be.visible').should('be.enabled').then(($searchBar) => {
         typeInput($searchBar, term);
     });
     onClick(homeElements.SEARCH_ENTER, true);
@@ -33,10 +32,7 @@ export function getNoResults() {
         expect(text).to.include('No results');
     });
 }
-
-export function getSearchedArticle() {
-    getElement(homeElements.SEARCHED_RESULT).should('have.length.greaterThan', 1);
-}
+export const getSearchedArticle = () => getElement(homeElements.SEARCHED_RESULT).should('have.length.greaterThan', 1);
 export function checkSearchedArticle(){
     getElement(homeElements.SEARCHED_RESULT).first().invoke('text').then((text) => {
         articleTitleText = text;

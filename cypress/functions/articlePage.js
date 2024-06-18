@@ -1,10 +1,9 @@
-import {articleElements, newsletterElements} from "../support/constants.js";
-import { onClick, visitPage, getElement } from "./commonFunctions.js";
+import {articleElements} from "../constants.js";
+import { getElement } from "./commonFunctions.js";
 
 
-export function checkUrl(url){
-    cy.url().should('contain', url);
-}
+export const checkUrl = (url) => cy.url().should('contain', url);
+export const checkIndex = (name) => getElement(articleElements.ARTICLE_INDEX.replace('name', name)).should('be.visible');
 
 
 export function orderTable(order){
@@ -17,27 +16,17 @@ export function orderTable(order){
     article.click();
     
 }
-export function checkOrder(order){
-    getElement(articleElements.RICHEST_TABLE).then(($rows) => {
-        const rowCount = $rows.length;
+export function checkOrder(order) {
+    cy.xpath(articleElements.RICHEST_TABLE + articleElements.TABLE_CELL) // Asumiendo que "//td" selecciona correctamente las celdas con las edades
+        .then($cells => {
+            const ages = $cells.toArray().map(cell => parseInt(cell.innerText));
 
-        for (let i = 0; i < rowCount - 1; i++) {
-            getElement(articleElements.TABLE_CELL.replace('{row}', i + 1)).invoke('text').then((age1Text) => {
-                const age1 = parseInt(age1Text);
-
-                getElement(articleElements.TABLE_CELL.replace('{row}', i + 2)).invoke('text').then((age2Text) => {
-                    const age2 = parseInt(age2Text);
-
-                    expect(age1).to.be.a('number');
-                    expect(age2).to.be.a('number');
-
-                    if (order == "oldest"){
-                        expect(age1).to.be.at.least(age2);
-                    } else {
-                        expect(age1).to.be.at.most(age2);
-                    }
-                });
-            });
-        }
-    });
+            for (let i = 0; i < ages.length - 1; i++) {
+                if (order === "oldest") {
+                    expect(ages[i]).to.be.at.least(ages[i + 1], 'La edad debe ser al menos igual a la del siguiente en la lista para "youngest"');
+                } else {
+                    expect(ages[i]).to.be.at.most(ages[i + 1], 'La edad debe ser como máximo igual a la del siguiente en la lista para "oldest"');
+                }
+            }
+        });
 }

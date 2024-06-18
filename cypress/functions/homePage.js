@@ -1,6 +1,6 @@
-import {homeElements, articleElements, newsletterElements} from "../support/constants.js";
+import {homeElements, articleElements, newsletterElements} from "../constants.js";
 //import * as loginScreen from "./articlePage.js";
-import { typeInput, onClick, visitPage, getElement } from "./commonFunctions.js";
+import { onClick, visitPage } from "./commonFunctions.js";
 
 let articleTitleText;
 
@@ -14,7 +14,6 @@ export function visitSearchPage() {
     cy.url().then((url) => {
         expect(url).to.include(homeElements.SEARCH_URL);
     });
-    cy.wait(2000)
 }
 
 export function visitNewsletter() {
@@ -47,12 +46,10 @@ export function visitBillionaireMenu() {
     onClick(homeElements.BILLIONAIRES, true);
 }
 
-export function clickArticle(article){
-    onClick(homeElements.LINK_MENU.replace('name', article));
-}
-export function clickMenuCategory(cat){
-    onClick(homeElements.CATEGORY_MENU.replace('name', cat));
-}
+export const clickArticle = (article) => onClick(homeElements.LINK_MENU.replace('name', article));
+
+export const clickMenuCategory = (cat) => onClick(homeElements.CATEGORY_MENU.replace('name', cat));
+
 
 export function clickMainArticle() {
     cy.get(homeElements.ARTICLE_TITLE).invoke('text').then((text) => {
