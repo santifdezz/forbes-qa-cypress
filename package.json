@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"  },
+    "test": "cucumber-js",
+    "start": "npx cypress run"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
