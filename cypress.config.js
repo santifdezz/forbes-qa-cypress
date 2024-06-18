@@ -4,6 +4,7 @@ const addCucumberPreprocessorPlugin  = require("@badeball/cypress-cucumber-prepr
 const createEsbuildPlugin  = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
 module.exports = defineConfig({
+  projectId: "3uuis8",
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
@@ -18,5 +19,6 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     defaultCommandTimeout: 200000,
     pageLoadTimeout: 100000
+
   },
 });
