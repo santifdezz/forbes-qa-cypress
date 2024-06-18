@@ -11,9 +11,15 @@ jobs:
           node-version: '20' # Puedes especificar la versión de Node.js que tu proyecto requiere
       - name: Install dependencies
         run: npm install
-      - name: Install Firefox
-        run: sudo apt-get install -y firefox
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          google-chrome --version # Verifica la versión de Chrome para asegurar que se instaló correctamente
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          command: npx cypress run --browser firefox
+          command: npx cypress run --browser chrome
