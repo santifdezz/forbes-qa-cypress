@@ -6,6 +6,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Puedes especificar la versión de Node.js que tu proyecto requiere
+      - name: Install dependencies
+        run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
