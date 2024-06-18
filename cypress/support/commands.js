@@ -23,25 +23,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-let COOKIES;
-
-Cypress.Commands.add('saveCookies', () => {
-  cy.getCookies().then((cookies) => {
-    COOKIES = cookies;
-  });
-});
-
-Cypress.Commands.add('restoreCookies', () => {
-  COOKIES.forEach((cookie) => {
-    cy.setCookie(cookie.name, cookie.value, {
-      domain: cookie.domain,
-      expiry: cookie.expiry,
-      httpOnly: cookie.httpOnly,
-      path: cookie.path,
-      secure: cookie.secure,
-    });
-  });
-});
 Cypress.on('uncaught:exception', (err, runnable) => {
       // Deja que los demás errores no capturados provoquen un fallo en la prueba
     return false;
