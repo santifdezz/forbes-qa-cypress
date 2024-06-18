@@ -3,9 +3,6 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node20.0.0-chrome91-ff89 # Usa una imagen de Docker adecuada para Cypress y Firefox
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -14,6 +11,8 @@ jobs:
           node-version: '20' # Puedes especificar la versión de Node.js que tu proyecto requiere
       - name: Install dependencies
         run: npm install
+      - name: Install Firefox
+        run: sudo apt-get install -y firefox
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
