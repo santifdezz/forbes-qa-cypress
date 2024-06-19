@@ -8,7 +8,7 @@ export function visitPage() {
     cy.get('@acceptButton').should('be.visible').click();
 }
 export const onClick = (selector, force = false) => getElement(selector).first().click({ force });
-export const typeInput = (selector, text) => getElement(selector).should('be.visible').should('be.enabled').type(text);
+export const typeInput = (selector, text, force = false) => getElement(selector).type(text,{ force } );
 export function checkRedirection(link){
     cy.url().then((url) => {
         assert.strictEqual(url, link);

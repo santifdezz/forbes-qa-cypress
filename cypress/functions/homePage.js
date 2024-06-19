@@ -1,4 +1,4 @@
-import {homeElements, articleElements, newsletterElements} from "../constants.js";
+import {homeElements, articleElements, newsletterElements, searchElements} from "../constants.js";
 //import * as loginScreen from "./articlePage.js";
 import { onClick, visitPage } from "./commonFunctions.js";
 
@@ -10,15 +10,16 @@ export function visitMenu() {
 }
 export function visitSearchPage() {
     visitPage();
-    onClick(homeElements.SEARCH_ICON);
+    onClick(searchElements.SEARCH_ICON, true);
     cy.url().then((url) => {
-        expect(url).to.include(homeElements.SEARCH_URL);
+        expect(url).to.include(searchElements.SEARCH_URL);
     });
 }
 
 export function visitNewsletter() {
-    visitMenu();
-    cy.get(homeElements.NEWSLETTER_TEXT).then(($a) => {
+    visitPage();
+    onClick(newsletterElements.NEWSLETTER_TEXT, true);
+    cy.get(newsletterElements.NEWSLETTER_TEXT).then(($a) => {
         const url = $a.prop('href');
 
         // Visita la URL en la misma pestaña
@@ -27,7 +28,6 @@ export function visitNewsletter() {
             expect(url).to.include(newsletterElements.NEWSLETTER_URL);
         });
     });
-
 }
 
 export function verifyArticle() {

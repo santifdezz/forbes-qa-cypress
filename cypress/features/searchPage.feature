@@ -14,17 +14,17 @@ Scenario Outline: Succesfull Search
 
     Examples:
         | term       |
-        | "Ethereum" |
-        | "WWE"      |
+        | Ethereum   |
+        | WWE        |
 
 Scenario: Invalid Search
     When the user enters invalid "<term>" into the search bar
     Then the user should see No results
 
     Examples:
-        | term                 |
-        | "uisdakfcedsvd"      |
-        | "fujdsvjdskfgbvdfbh" |
+        | term               |
+        | uisdakfcedsvd      |
+        | fujdsvjdskfgbvdfbh |
 
 
 

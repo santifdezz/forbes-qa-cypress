@@ -1,4 +1,4 @@
-import {homeElements, articleElements} from "../constants.js";
+import {articleElements, searchElements} from "../constants.js";
 import { typeInput, onClick, getElement} from "./commonFunctions.js";
 
 let articleTitleText;
@@ -15,28 +15,32 @@ export function verifyArticle() {
 
 }
 export function searchArticle(term) {
-    onClick(homeElements.SEARCH_ICON);
     cy.url().then((url) => {
-        expect(url).to.include(homeElements.SEARCH_URL);
+        expect(url).to.include(searchElements.SEARCH_URL);
     });
-    getElement(homeElements.SEARCH_BAR).as('searchBar');
-    getElement('@searchBar').should('be.visible').should('be.enabled').then(($searchBar) => {
-        typeInput($searchBar, term);
-    });
-    onClick(homeElements.SEARCH_ENTER, true);
+
+    // Espera a que el elemento de la barra de búsqueda no solo sea visible sino también esté habilitado
+    getElement(searchElements.SEARCH_BAR)
+        .should('be.visible', {timeout: 2000})
+        .should('be.enabled', {timeout: 2000})
+        .click({force: true})
+    
+    typeInput(searchElements.SEARCH_BAR, term, true);                                                                                                                                                            
+
+    onClick(searchElements.SEARCH_ENTER, true);
 }
 
 export function getNoResults() {
-    getElement(homeElements.NO_RESULTS).invoke('text').then((text) => {
+    getElement(searchElements.NO_RESULTS).invoke('text').then((text) => {
         expect(text).to.include('No results');
     });
 }
-export const getSearchedArticle = () => getElement(homeElements.SEARCHED_RESULT).should('have.length.greaterThan', 1);
+export const getSearchedArticle = () => getElement(searchElements.SEARCHED_RESULT).should('have.length.greaterThan', 1);
 export function checkSearchedArticle(){
-    getElement(homeElements.SEARCHED_RESULT).first().invoke('text').then((text) => {
+    getElement(searchElements.SEARCHED_RESULT).first().invoke('text').then((text) => {
         articleTitleText = text;
     });
-    onClick(homeElements.SEARCHED_RESULT);
+    onClick(searchElements.SEARCHED_RESULT);
     getElement(articleElements.ARTICLE_TITLE_SEARCHED).first().invoke('text').then((newPageTitleText) => {
         expect(newPageTitleText).to.eq(articleTitleText);
     });

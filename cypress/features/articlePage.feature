@@ -31,12 +31,13 @@ Scenario Outline: Category menu navigation
     | Thailand\'s Richest   | oldest   |
     | Thailand\'s Richest   | youngest |
 
+
 Scenario Outline: Article redirection through search
     Given the user is on the search page
     When the user enters "<term>" into the search bar
     Then the article title should be the same as the article search result
 
     Examples:
-        | term      |
-        | Ethereum  |
-        | WWE       |
+        | term     |
+        | Ethereum |
+        | WWE      |

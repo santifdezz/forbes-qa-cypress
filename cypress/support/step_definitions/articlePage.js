@@ -1,4 +1,4 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import * as Browser from '../../functions/commonFunctions.js';
 import * as ArticlePage from '../../functions/articlePage.js';
 import * as HomePage from '../../functions/homePage.js';
@@ -16,6 +16,8 @@ Given('the user is with the menu open on the homepage', () => {
 Given('the user clicks on a {string} on the menu', (category) => {
     HomePage.clickMenuCategory(category);
 });
+
+
 
 When('the user is redirected to the correct {string}', (url) => {
     ArticlePage.checkUrl(url);
