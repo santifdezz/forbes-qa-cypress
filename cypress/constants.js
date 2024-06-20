@@ -5,7 +5,8 @@ export const homeElements = {
     BILLIONAIRES: 'a[data-ga-track="U20 - Channel: Billionaires - Position 1"] + span',
     ACCEPT_COOKIES: 'button[aria-label="Reject All"]',
     LINK_MENU: 'a:contains(name)',
-    CATEGORY_MENU: 'li:contains(name)'
+    CATEGORY_MENU: 'li:contains(name)',
+    TIMEOUT: 15000
 }
 export const searchElements = {
     SEARCH_ICON: 'a[aria-label="Search"]',

@@ -1,4 +1,4 @@
-import {articleElements, searchElements} from "../constants.js";
+import {articleElements, homeElements, searchElements} from "../constants.js";
 import { typeInput, onClick, getElement} from "./commonFunctions.js";
 
 let articleTitleText;
@@ -21,8 +21,8 @@ export function searchArticle(term) {
 
     // Espera a que el elemento de la barra de búsqueda no solo sea visible sino también esté habilitado
     getElement(searchElements.SEARCH_BAR)
-        .should('be.visible', {timeout: 2000})
-        .should('be.enabled', {timeout: 2000})
+        .should('be.visible', {timeout: homeElements.TIMEOUT})
+        .should('be.enabled', {timeout: homeElements.TIMEOUT})
         .click({force: true})
     
     typeInput(searchElements.SEARCH_BAR, term, true);                                                                                                                                                            
