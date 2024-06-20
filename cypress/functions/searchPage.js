@@ -32,7 +32,7 @@ export function searchArticle(term) {
 
 export function getNoResults() {
     getElement(searchElements.NO_RESULTS).invoke('text').then((text) => {
-        expect(text).to.include('No results');
+        expect(text).to.include(searchElements.NO_RESULTS_TEXT);
     });
 }
 export const getSearchedArticle = () => getElement(searchElements.SEARCHED_RESULT).should('have.length.greaterThan', 1);

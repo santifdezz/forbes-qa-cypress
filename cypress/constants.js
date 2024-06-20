@@ -15,6 +15,7 @@ export const searchElements = {
     SEARCH_ENTER: 'button[aria-label="Search"]',
     SEARCHED_RESULT: 'h3.CardArticle_headline___NhjF',
     NO_RESULTS: '.NoResults_title__Lx2Vo',
+    NO_RESULTS_TEXT: 'No results',
 }
 export const articleElements = {
     ARTICLE_URL: '/sites/',
