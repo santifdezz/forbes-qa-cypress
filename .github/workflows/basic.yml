@@ -13,7 +13,6 @@ jobs:
       - name: Install npm dependencies
         run: npm i
       - name: Cypress run
-        uses: cypress-io/github-action@v6
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
